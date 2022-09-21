@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 
+#create the instances
 db = SQLAlchemy()
 ma = Marshmallow()
 
@@ -11,6 +12,7 @@ def create_app():
 
     app.config.from_object("config.app_config")
     
+    #initialise the instances
     db.init_app(app)
     ma.init_app(app)
   

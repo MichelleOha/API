@@ -9,7 +9,6 @@ from models.receipt import Receipt
 db_commands = Blueprint("db", __name__)
 
 
-
 @db_commands.cli.command('create')
 def create_db():
     # Tell SQLAlchemy to create all tables for all models in the physical DB

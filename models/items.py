@@ -9,6 +9,6 @@ class Items(db.Model):
     style = db.Column(db.String(150))
     size = db.Column(db.String(20))
     price = db.Column(db.Float)
-    season= db.Column(db.String(20))
+    season = db.Column(db.String(20))
     brand_name = db.Column(db.String(150))
     

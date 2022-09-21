@@ -1,4 +1,4 @@
-from unicodedata import category
+# from unicodedata import category
 from flask import Blueprint
 from main import db
 from models.category import Category 
