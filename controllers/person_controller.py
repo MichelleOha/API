@@ -34,6 +34,18 @@ def create_person():
     db.session.commit()
     return(person_schema.dump(person))
 
+@person.route("/<int:id>", methods=["DELETE"])
+def delete_person(id):
+    person = Person.query.get(id)
+    if not person:
+        return {"SORRY":"Person not found."}
+    
+    db.session.delete(person)
+    #save changes in db
+    db.session.commit()
+    
+    return {"NOTE":"This person has now been removed from the database successfully."}
+
 @person.route("/<int:id>", methods=["PUT"])
 def update_person(id):
     person = Person.query.get(id)
@@ -48,3 +60,5 @@ def update_person(id):
     db.session.commit()
     
     return(person_schema.dump(person))
+
+

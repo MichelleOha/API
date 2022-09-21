@@ -50,7 +50,7 @@ def delete_item(id):
     
     return {"NOTE":"The Item has now been removed from list successfully."}
 
-@items.route("/<int:id>", methods=["PUT"])
+@items.route("/<int:id>", methods=["PUT"]) #update_item
 def update_item(id):
     item = Items.query.get(id)
     if not item:
