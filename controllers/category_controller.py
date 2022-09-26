@@ -7,7 +7,7 @@ from schemas.category_schema import category_schema, categories_schema
 category = Blueprint('category', __name__, url_prefix="/category")
 
 @category.route("/", methods=["GET"])
-def get_category():
+def get_categories():
     #get all the category from db
     categories_list = Category.query.all()
     result = categories_schema.dump(categories_list)

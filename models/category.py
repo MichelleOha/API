@@ -6,6 +6,10 @@ class Category(db.Model):
     #setting the columns
     category_id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.String(150))
+    items = db.relationship(
+        "Items",
+        back_populate= "items"
+    )
     
     
     

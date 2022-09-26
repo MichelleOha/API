@@ -1,11 +1,11 @@
 from main import ma
 
-class PersonSchema(ma.Schema):
+class SizeSchema(ma.Schema):
     class Meta:
         fields = ["person_id", "name", "clothing_size", "shoe_size"]
         
 #single schema
-person_schema = PersonSchema()
+size_schema = SizeSchema()
 #multiple schemas
-persons_schema = PersonSchema(many=True)
+sizes_schema = SizeSchema(many=True)
  

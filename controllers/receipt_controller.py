@@ -6,7 +6,7 @@ from schemas.receipt_schema import receipt_schema, receipts_schema
 receipt = Blueprint('receipt', __name__, url_prefix="/receipt")
 
 @receipt.route("/", methods=["GET"])
-def get_receipt():
+def get_receipts():
     #get all the receipt from db
     receipts_list = Receipt.query.all()
     result = receipts_schema.dump(receipts_list)

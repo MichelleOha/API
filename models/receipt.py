@@ -8,4 +8,4 @@ class Receipt(db.Model):
     online_or_instore = db.Column(db.String(10))
     year = db.Column(db.Integer)
     store = db.Column(db.String(100))
-    
+    items_id = db.Column(db.Integer, db.ForeignKey("items.item_id"))
