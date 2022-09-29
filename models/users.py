@@ -9,10 +9,10 @@ class Users(db.Model):
     password = db.Column(db.String(), nullable=False)
     items = db.relationship(
         "Items",
-        back_populate= "items"
+        backref= "users"
     )
-    size = db.relationship(
-        "size",
-        back_populate= "size"
+    standard_size = db.relationship(
+        "Standard_Size",
+        backref= "users"
     )
     

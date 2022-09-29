@@ -26,7 +26,8 @@ def new_receipt():
     receipt = Receipt(
         online_or_instore = receipt_fields["online_or_instore"],
         year = receipt_fields["year"],
-        store = receipt_fields["store"]
+        store = receipt_fields["store"],
+        items_id = receipt_fields["items_id"]
     )
     
     db.session.add(receipt)

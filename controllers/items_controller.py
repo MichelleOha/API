@@ -1,7 +1,7 @@
 from cgi import print_exception
 from crypt import methods
 from tkinter.ttk import Style
-from flask import Blueprint, request #removed jsonify
+from flask import Blueprint, request 
 from main import db
 from models.items import Items
 from schemas.items_schema import item_schema, items_schema
@@ -13,14 +13,14 @@ def get_items():
     #get all the items from db
     items_list = Items.query.all()
     result = items_schema.dump(items_list)
-    return(result) #removed jsonify
+    return(result) 
 
 @items.route("/<int:id>", methods=["GET"])
 def get_item(id):
     #get an item from db by id
     item = Items.query.get(id)
     result = item_schema.dump(item)
-    return(result) #removed jsonify
+    return(result) 
 
 @items.route("/", methods=["POST"])
 def new_item():
@@ -31,7 +31,10 @@ def new_item():
         size = item_fields["size"],
         price = item_fields["price"],
         season = item_fields["season"],
-        brand_name = item_fields["brand_name"]
+        brand_name = item_fields["brand_name"],
+        standard_size_id = item_fields["standard_size_id"],
+        category_id = item_fields["category_id"],
+        users_id = item_fields["users_id"]
     )
     
     db.session.add(item)
