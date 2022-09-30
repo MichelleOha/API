@@ -13,7 +13,7 @@ class Standard_Size(db.Model):
     
     items = db.relationship(
         "Items",#class
-        backref= "Standard_Size",
+        backref= "standard_size",
         cascade= "all, delete"
     )
     

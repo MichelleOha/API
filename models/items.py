@@ -19,8 +19,8 @@ class Items(db.Model):
         "Receipt",
         backref= "items"
     )
-    category_type = db.relationship(
-    "Category",
-    backref="item_category_type"
-  )
+#     category_type = db.relationship(
+#     "Category",
+#     backref="item_category_type"
+#   )
     

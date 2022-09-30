@@ -128,9 +128,6 @@ def seed_db():
         price = 299.00,
         season = "winter",
         brand_name = "Nobody",
-        # stand_size = standard_size1,
-        # category = category1,
-        # user = user1
         standard_size_id = standard_size1.standard_size_id, 
         category_id = category1.category_id, 
         users_id = user1.users_id 
@@ -146,9 +143,6 @@ def seed_db():
         price = 89.00,
         season = "summer",
         brand_name = "Ralph Lauren",
-        # standard_size = standard_size1,
-        # category = category1,
-        # user = user1
         standard_size_id = standard_size2.standard_size_id, 
         category_id = category2.category_id,  
         users_id = user2.users_id
