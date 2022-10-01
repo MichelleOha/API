@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from main import db
 from models.standard_size import Standard_Size
 from schemas.standard_size_schema import standard_size_schema, standard_sizes_schema
+from marshmallow.exceptions import ValidationError
 
 standard_size = Blueprint('standard_size', __name__, url_prefix="/standard_size")
 
@@ -10,16 +11,16 @@ def get_standard_sizes():
     #get all the person from db
     standard_sizes_list = Standard_Size.query.all()
     result = standard_sizes_schema.dump(standard_sizes_list)
-    return(result)
+    return(result), 200
 
 @standard_size.route("/<int:id>", methods=["GET"])
 def get_standard_size(id):
     #get an item from db by id
     standard_size = Standard_Size.query.get(id)
     if not standard_size:
-        return {"SORRY": "This size id doesn't exist."}
+        return {"SORRY": "This size id doesn't exist."}, 404
     result = standard_size_schema.dump(standard_size)
-    return(result) 
+    return(result), 200
 
 @standard_size.route("/", methods=["POST"])
 def create_standard_size():
@@ -33,7 +34,7 @@ def create_standard_size():
     
     db.session.add(standard_size)
     db.session.commit()
-    return(standard_size_schema.dump(standard_size))
+    return(standard_size_schema.dump(standard_size)), 201
 
 @standard_size.route("/<int:id>", methods=["DELETE"])
 def delete_standard_size(id):
@@ -60,6 +61,8 @@ def update_standard_size(id):
     
     db.session.commit()
     
-    return(standard_size_schema.dump(standard_size))
+    return(standard_size_schema.dump(standard_size)), 201
 
-
+@standard_size.errorhandler(ValidationError)
+def register_validation_error(error):
+    return error.messages, 400

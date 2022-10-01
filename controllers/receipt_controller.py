@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from main import db
 from models.receipt import Receipt
 from schemas.receipt_schema import receipt_schema, receipts_schema
+from marshmallow.exceptions import ValidationError
 
 receipt = Blueprint('receipt', __name__, url_prefix="/receipt")
 
@@ -10,7 +11,7 @@ def get_receipts():
     #get all the receipt from db
     receipts_list = Receipt.query.all()
     result = receipts_schema.dump(receipts_list)
-    return(result) 
+    return(result), 200
 
   
 @receipt.route("/<int:id>", methods=["GET"])
@@ -18,7 +19,7 @@ def get_receipt(id):
     #get an category from db by id
     receipt = Receipt.query.get(id)
     result = receipt_schema.dump(receipt)
-    return(result) 
+    return(result), 200
 
 @receipt.route("/", methods=["POST"])
 def new_receipt():
@@ -32,13 +33,13 @@ def new_receipt():
     
     db.session.add(receipt)
     db.session.commit()
-    return(receipt_schema.dump(receipt)) 
+    return(receipt_schema.dump(receipt)), 201
 
 @receipt.route("/<int:id>", methods=["DELETE"])
 def delete_receipt(id):
     receipt = Receipt.query.get(id)
     if not receipt:
-        return {"SORRY":"Receipt not found."}
+        return {"SORRY":"Receipt not found."}, 404
     
     db.session.delete(receipt)
     #save changes in db
@@ -57,4 +58,8 @@ def update_receipt(id):
 
     db.session.commit()
     
-    return(receipt_schema.dump(receipt))
+    return(receipt_schema.dump(receipt)), 201
+
+@receipt.errorhandler(ValidationError)
+def register_validation_error(error):
+    return error.messages, 400

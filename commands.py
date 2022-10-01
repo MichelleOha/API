@@ -149,6 +149,48 @@ def seed_db():
     )
     
     db.session.add(item2)
+    
+    item3 = Items(
+        description = "Netball runners",
+        style = "sneakers",
+        size = "5",
+        price = 150.00,
+        season = "summer",
+        brand_name = "ASICS",
+        standard_size_id = standard_size3.standard_size_id, 
+        category_id = category4.category_id,  
+        users_id = user1.users_id
+    )
+    
+    db.session.add(item3)
+    
+    item4 = Items(
+        description = "Ballgown",
+        style = "dress",
+        size = "12",
+        price = 8999.00,
+        season = "winter",
+        brand_name = "YSL",
+        standard_size_id = standard_size1.standard_size_id, 
+        category_id = category1.category_id, 
+        users_id = user1.users_id 
+    )
+    
+    db.session.add(item4)
+    
+    item5 = Items(
+        description = "School Shoes",
+        style = "shoes",
+        size = "9",
+        price = 90.00,
+        season = "summer",
+        brand_name = "Clarks",
+        standard_size_id = standard_size4.standard_size_id, 
+        category_id = category4.category_id, 
+        users_id = user2.users_id 
+    )
+    
+    db.session.add(item5)
     db.session.commit()
     
     receipt1 = Receipt(
@@ -164,10 +206,28 @@ def seed_db():
        online_or_instore = "online",
        year = 2022,
        store = "Ralph Lauren",
-       item_id = item2.item_id #item2.item_id
+       item_id = item2.item_id 
    )
     
     db.session.add(receipt2)
+    
+    receipt3 = Receipt(
+       online_or_instore = "online",
+       year = 2022,
+       store = "YSL",
+       item_id = item4.item_id 
+   )
+    
+    db.session.add(receipt3)
+    
+    receipt4 = Receipt(
+       online_or_instore = "instore",
+       year = 2019,
+       store = "David Jones",
+       item_id = item5.item_id 
+   )
+    
+    db.session.add(receipt4)
     
     db.session.commit()
     print("Tables seeded")
